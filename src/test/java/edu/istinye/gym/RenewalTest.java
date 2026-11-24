@@ -104,4 +104,19 @@ class RenewalTest {
     void appRuns() {
         assertDoesNotThrow(() -> App.main(new String[0]));
     }
+
+    @Test
+    @Tag("regression")
+    @DisplayName("TC-REN-08 Negative: a membership that has not started yet cannot be renewed")
+    void notStartedCannotBeRenewed() {
+        Member member = service.registerMember("Mert Can", 30, "mert@mail.com", false);
+        Membership monthly = service.createMembership(member.getId(), MembershipType.MONTHLY,
+                MemberCategory.STANDARD, START, START);
+        LocalDate renewDay = LocalDate.of(2026, 12, 5);
+        Membership upcoming = service.renewMembership(monthly.getId(), MembershipType.MONTHLY, renewDay);
+        assertEquals(MembershipStatus.NOT_STARTED, upcoming.getStatus(renewDay));
+        assertThrows(IllegalStateException.class,
+                () -> service.renewMembership(upcoming.getId(), MembershipType.MONTHLY, renewDay));
+        assertEquals(2, service.getMembershipsOf(member.getId()).size());
+    }
 }
