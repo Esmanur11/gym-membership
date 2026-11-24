@@ -35,6 +35,9 @@ public class Membership {
         if (date.isAfter(endDate)) {
             return MembershipStatus.EXPIRED;
         }
+        if (date.isBefore(startDate)) {
+            return MembershipStatus.NOT_STARTED;
+        }
         if (frozenUntil != null && !date.isBefore(frozenFrom) && !date.isAfter(frozenUntil)) {
             return MembershipStatus.FROZEN;
         }

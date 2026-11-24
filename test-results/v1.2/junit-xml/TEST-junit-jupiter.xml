@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Jupiter" tests="118" skipped="0" failures="0" errors="0" time="0.475" hostname="vm" timestamp="2026-11-24T15:55:05">
+<properties>
+<property name="file.encoding" value="UTF-8"/>
+<property name="file.separator" value="/"/>
+<property name="http.nonProxyHosts" value="localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local"/>
+<property name="https.proxyHost" value="127.0.0.1"/>
+<property name="https.proxyPort" value="40599"/>
+<property name="java.class.path" value="/home/claude/tools/junit-console.jar"/>
+<property name="java.class.version" value="65.0"/>
+<property name="java.home" value="/usr/lib/jvm/java-21-openjdk-amd64"/>
+<property name="java.io.tmpdir" value="/tmp"/>
+<property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+<property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+<property name="java.runtime.version" value="21.0.13.1+2-1-24.04.1-Ubuntu"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="21"/>
+<property name="java.vendor" value="Ubuntu"/>
+<property name="java.vendor.url" value="https://ubuntu.com/"/>
+<property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-21"/>
+<property name="java.version" value="21.0.13.1"/>
+<property name="java.version.date" value="2026-11-17"/>
+<property name="java.vm.compressedOopsMode" value="32-bit"/>
+<property name="java.vm.info" value="mixed mode, sharing"/>
+<property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="21"/>
+<property name="java.vm.vendor" value="Ubuntu"/>
+<property name="java.vm.version" value="21.0.13.1+2-1-24.04.1-Ubuntu"/>
+<property name="javax.net.ssl.trustStore" value="/etc/ssl/certs/java/cacerts"/>
+<property name="javax.net.ssl.trustStoreType" value="JKS"/>
+<property name="jdk.debug" value="release"/>
+<property name="jdk.http.auth.proxying.disabledSchemes" value=""/>
+<property name="jdk.http.auth.tunneling.disabledSchemes" value=""/>
+<property name="junit.docs.version" value="1.11.4"/>
+<property name="line.separator" value="&#10;"/>
+<property name="native.encoding" value="ANSI_X3.4-1968"/>
+<property name="os.arch" value="amd64"/>
+<property name="os.name" value="Linux"/>
+<property name="os.version" value="6.18.44-fc-v819"/>
+<property name="path.separator" value=":"/>
+<property name="stderr.encoding" value="ANSI_X3.4-1968"/>
+<property name="stdout.encoding" value="ANSI_X3.4-1968"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+<property name="sun.java.command" value="/home/claude/tools/junit-console.jar execute -cp /tmp/build/main:/tmp/build/test --scan-classpath --details=tree --disable-banner --disable-ansi-colors --reports-dir=/home/claude/gym-membership/test-results/v1.2/junit-xml"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="ANSI_X3.4-1968"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="user.country" value="US"/>
+<property name="user.dir" value="/home/claude/gym-membership"/>
+<property name="user.home" value="/root"/>
+<property name="user.language" value="en"/>
+<property name="user.name" value="root"/>
+<property name="user.timezone" value="Europe/Istanbul"/>
+</properties>
+<testcase name="frozenCannotBeRenewed()" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[method:frozenCannotBeRenewed()]
+display-name: TC-REN-04 Negative: frozen membership cannot be renewed
+]]></system-out>
+</testcase>
+<testcase name="sequentialIds()" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[method:sequentialIds()]
+display-name: TC-REG-11 Different e-mails get sequential member ids
+]]></system-out>
+</testcase>
+<testcase name="validAgesAccepted(int)[5]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:validAgesAccepted(int)]/[test-template-invocation:#5]
+display-name: TC-REG-04 BVA age 100 (with consent) is accepted
+]]></system-out>
+</testcase>
+<testcase name="endDateIsLastDayOfPeriod(MembershipType, LocalDate)[2]" classname="edu.istinye.gym.MembershipCreationTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:endDateIsLastDayOfPeriod(edu.istinye.gym.MembershipType, java.time.LocalDate)]/[test-template-invocation:#2]
+display-name: TC-MEM-01 QUARTERLY starting 2026-12-01 ends on 2027-02-28
+]]></system-out>
+</testcase>
+<testcase name="validAgesAccepted(int)[4]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:validAgesAccepted(int)]/[test-template-invocation:#4]
+display-name: TC-REG-04 BVA age 99 (with consent) is accepted
+]]></system-out>
+</testcase>
+<testcase name="endDateIsLastDayOfPeriod(MembershipType, LocalDate)[3]" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:endDateIsLastDayOfPeriod(edu.istinye.gym.MembershipType, java.time.LocalDate)]/[test-template-invocation:#3]
+display-name: TC-MEM-01 ANNUAL starting 2026-12-01 ends on 2027-11-30
+]]></system-out>
+</testcase>
+<testcase name="validAgesAccepted(int)[3]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:validAgesAccepted(int)]/[test-template-invocation:#3]
+display-name: TC-REG-04 BVA age 18 (with consent) is accepted
+]]></system-out>
+</testcase>
+<testcase name="validAgesAccepted(int)[2]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:validAgesAccepted(int)]/[test-template-invocation:#2]
+display-name: TC-REG-04 BVA age 17 (with consent) is accepted
+]]></system-out>
+</testcase>
+<testcase name="endDateIsLastDayOfPeriod(MembershipType, LocalDate)[1]" classname="edu.istinye.gym.MembershipCreationTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:endDateIsLastDayOfPeriod(edu.istinye.gym.MembershipType, java.time.LocalDate)]/[test-template-invocation:#1]
+display-name: TC-MEM-01 MONTHLY starting 2026-12-01 ends on 2026-12-31
+]]></system-out>
+</testcase>
+<testcase name="validAgesAccepted(int)[1]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:validAgesAccepted(int)]/[test-template-invocation:#1]
+display-name: TC-REG-04 BVA age 16 (with consent) is accepted
+]]></system-out>
+</testcase>
+<testcase name="ineligibleCategoryRejected()" classname="edu.istinye.gym.MembershipCreationTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[method:ineligibleCategoryRejected()]
+display-name: TC-MEM-04 Negative: ineligible category (STUDENT at age 26) is rejected
+]]></system-out>
+</testcase>
+<testcase name="notStartedCannotBeFrozen()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:notStartedCannotBeFrozen()]
+display-name: TC-FRZ-09 Negative: membership that has not started cannot be frozen
+]]></system-out>
+</testcase>
+<testcase name="nullArgumentsRejected()" classname="edu.istinye.gym.FeeCalculatorTest" time="0.004">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[method:nullArgumentsRejected()]
+display-name: TC-FEE-03 Negative: null plan or category is rejected
+]]></system-out>
+</testcase>
+<testcase name="validEmailAccepted(String)[2]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:validEmailAccepted(java.lang.String)]/[test-template-invocation:#2]
+display-name: TC-REG-07 EP valid e-mail [ayse.yilmaz@istinye.edu.tr]
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[5]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#5]
+display-name: TC-REG-08 EP invalid e-mail [@mail.com] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidArgumentsRejected()" classname="edu.istinye.gym.MembershipCreationTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[method:invalidArgumentsRejected()]
+display-name: TC-MEM-08 Negative: unknown member and missing arguments are rejected
+]]></system-out>
+</testcase>
+<testcase name="validEmailAccepted(String)[1]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0.005">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:validEmailAccepted(java.lang.String)]/[test-template-invocation:#1]
+display-name: TC-REG-07 EP valid e-mail [a@b.co]
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[6]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#6]
+display-name: TC-REG-08 EP invalid e-mail [a@mail] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[3]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#3]
+display-name: TC-REG-08 EP invalid e-mail [abc] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[4]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#4]
+display-name: TC-REG-08 EP invalid e-mail [abc@] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[1]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#1]
+display-name: TC-REG-08 EP invalid e-mail [null] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[2]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#2]
+display-name: TC-REG-08 EP invalid e-mail [] is rejected
+]]></system-out>
+</testcase>
+<testcase name="createdMembershipHasCorrectState()" classname="edu.istinye.gym.MembershipCreationTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[method:createdMembershipHasCorrectState()]
+display-name: TC-MEM-02 New membership stores fee, plan and ACTIVE status
+]]></system-out>
+</testcase>
+<testcase name="validEmailAccepted(String)[3]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:validEmailAccepted(java.lang.String)]/[test-template-invocation:#3]
+display-name: TC-REG-07 EP valid e-mail [  user@mail.com  ]
+]]></system-out>
+</testcase>
+<testcase name="newMembershipAfterExpiry()" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[method:newMembershipAfterExpiry()]
+display-name: TC-MEM-07 New membership allowed the day after the previous one expired
+]]></system-out>
+</testcase>
+<testcase name="renewalDiscountNullDates()" classname="edu.istinye.gym.FeeCalculatorTest" time="0.005">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[method:renewalDiscountNullDates()]
+display-name: TC-FEE-05 Negative: null dates for renewal discount are rejected
+]]></system-out>
+</testcase>
+<testcase name="appRuns()" classname="edu.istinye.gym.RenewalTest" time="0.004">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[method:appRuns()]
+display-name: TC-REN-07 Smoke: console demo runs without errors
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[7]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#7]
+display-name: TC-REG-08 EP invalid e-mail [a b@mail.com] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidEmailRejected(String)[8]" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[test-template:invalidEmailRejected(java.lang.String)]/[test-template-invocation:#8]
+display-name: TC-REG-08 EP invalid e-mail [a@@mail.com] is rejected
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[8]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#8]
+display-name: TC-FEE-01 DT ANNUAL + STANDARD + renewal 10% -> 8640.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[9]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#9]
+display-name: TC-FEE-01 DT ANNUAL + STUDENT + renewal 5% -> 7200.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[6]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#6]
+display-name: TC-FEE-01 DT QUARTERLY + STANDARD + renewal 5% -> 2565.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[7]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#7]
+display-name: TC-FEE-01 DT ANNUAL + SENIOR + renewal 0% -> 6720.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[10]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#10]
+display-name: TC-FEE-01 DT ANNUAL + STUDENT + renewal 10% -> 6720.00 TL
+]]></system-out>
+</testcase>
+<testcase name="renewalDiscountBoundaries(LocalDate, int)[5]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:renewalDiscountBoundaries(java.time.LocalDate, int)]/[test-template-invocation:#5]
+display-name: TC-FEE-04 BVA renew 2027-12-01 -> renewal discount 0%
+]]></system-out>
+</testcase>
+<testcase name="renewalDiscountBoundaries(LocalDate, int)[4]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:renewalDiscountBoundaries(java.time.LocalDate, int)]/[test-template-invocation:#4]
+display-name: TC-FEE-04 BVA renew 2027-11-30 -> renewal discount 5%
+]]></system-out>
+</testcase>
+<testcase name="renewalDiscountBoundaries(LocalDate, int)[3]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:renewalDiscountBoundaries(java.time.LocalDate, int)]/[test-template-invocation:#3]
+display-name: TC-FEE-04 BVA renew 2027-11-24 -> renewal discount 5%
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[13]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#13]
+display-name: TC-FEE-01 DT MONTHLY + SENIOR + renewal 10% -> 650.00 TL
+]]></system-out>
+</testcase>
+<testcase name="renewalDiscountBoundaries(LocalDate, int)[2]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:renewalDiscountBoundaries(java.time.LocalDate, int)]/[test-template-invocation:#2]
+display-name: TC-FEE-04 BVA renew 2027-11-23 -> renewal discount 10%
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[12]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#12]
+display-name: TC-FEE-01 DT ANNUAL + SENIOR + renewal 10% -> 6240.00 TL
+]]></system-out>
+</testcase>
+<testcase name="renewalDiscountBoundaries(LocalDate, int)[1]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.006">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:renewalDiscountBoundaries(java.time.LocalDate, int)]/[test-template-invocation:#1]
+display-name: TC-FEE-04 BVA renew 2027-11-22 -> renewal discount 10%
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[11]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#11]
+display-name: TC-FEE-01 DT ANNUAL + SENIOR + renewal 5% -> 6240.00 TL
+]]></system-out>
+</testcase>
+<testcase name="cannotRenewTwice()" classname="edu.istinye.gym.RenewalTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[method:cannotRenewTwice()]
+display-name: TC-REN-05 Negative: a membership cannot be renewed twice
+]]></system-out>
+</testcase>
+<testcase name="expiredCannotBeFrozen()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:expiredCannotBeFrozen()]
+display-name: TC-FRZ-02 DT R2: expired membership cannot be frozen
+]]></system-out>
+</testcase>
+<testcase name="cumulativeExactlyAtLimit()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:cumulativeExactlyAtLimit()]
+display-name: TC-FRZ-07 Two freezes that exactly use the allowance are accepted
+]]></system-out>
+</testcase>
+<testcase name="futureMembershipIsNotActiveBeforeStart(LocalDate, MembershipStatus)[1]" classname="edu.istinye.gym.MembershipCreationTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:futureMembershipIsNotActiveBeforeStart(java.time.LocalDate, edu.istinye.gym.MembershipStatus)]/[test-template-invocation:#1]
+display-name: TC-MEM-09 BVA status on 2026-12-01 for a membership starting 2026-12-10 -> NOT_STARTED
+]]></system-out>
+</testcase>
+<testcase name="hugeFreezeRejected(int)[1]" classname="edu.istinye.gym.FreezeTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:hugeFreezeRejected(int)]/[test-template-invocation:#1]
+display-name: TC-FRZ-12 Negative/BVA: freeze of 2147483647 days after 10 used is rejected without overflow
+]]></system-out>
+</testcase>
+<testcase name="hugeFreezeRejected(int)[2]" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:hugeFreezeRejected(int)]/[test-template-invocation:#2]
+display-name: TC-FRZ-12 Negative/BVA: freeze of 2147483642 days after 10 used is rejected without overflow
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[4]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#4]
+display-name: TC-FEE-01 DT QUARTERLY + STANDARD + renewal 0% -> 2700.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[5]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#5]
+display-name: TC-FEE-01 DT QUARTERLY + STUDENT + renewal 0% -> 2160.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[2]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#2]
+display-name: TC-FEE-01 DT MONTHLY + STUDENT + renewal 0% -> 800.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[3]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#3]
+display-name: TC-FEE-01 DT MONTHLY + SENIOR + renewal 0% -> 700.00 TL
+]]></system-out>
+</testcase>
+<testcase name="feeDecisionTable(MembershipType, MemberCategory, int, String)[1]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.044">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:feeDecisionTable(edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String)]/[test-template-invocation:#1]
+display-name: TC-FEE-01 DT MONTHLY + STANDARD + renewal 0% -> 1000.00 TL
+]]></system-out>
+</testcase>
+<testcase name="renewedMembershipCannotBeFrozen()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:renewedMembershipCannotBeFrozen()]
+display-name: TC-FRZ-11 Negative: membership that was already renewed cannot be frozen
+]]></system-out>
+</testcase>
+<testcase name="futureMembershipIsNotActiveBeforeStart(LocalDate, MembershipStatus)[2]" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:futureMembershipIsNotActiveBeforeStart(java.time.LocalDate, edu.istinye.gym.MembershipStatus)]/[test-template-invocation:#2]
+display-name: TC-MEM-09 BVA status on 2026-12-09 for a membership starting 2026-12-10 -> NOT_STARTED
+]]></system-out>
+</testcase>
+<testcase name="renewalWithPlanChange()" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[method:renewalWithPlanChange()]
+display-name: TC-REN-03 Renewal can change the plan type
+]]></system-out>
+</testcase>
+<testcase name="futureMembershipIsNotActiveBeforeStart(LocalDate, MembershipStatus)[3]" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:futureMembershipIsNotActiveBeforeStart(java.time.LocalDate, edu.istinye.gym.MembershipStatus)]/[test-template-invocation:#3]
+display-name: TC-MEM-09 BVA status on 2026-12-10 for a membership starting 2026-12-10 -> ACTIVE
+]]></system-out>
+</testcase>
+<testcase name="invalidAgesRejected(int)[4]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:invalidAgesRejected(int)]/[test-template-invocation:#4]
+display-name: TC-REG-05 BVA/negative age 101 is rejected
+]]></system-out>
+</testcase>
+<testcase name="monthlyCannotBeFrozen()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:monthlyCannotBeFrozen()]
+display-name: TC-FRZ-01 DT R1: monthly membership cannot be frozen
+]]></system-out>
+</testcase>
+<testcase name="invalidArguments()" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[method:invalidArguments()]
+display-name: TC-REN-06 Negative: unknown membership id and missing arguments are rejected
+]]></system-out>
+</testcase>
+<testcase name="seniorAccepted()" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[method:seniorAccepted()]
+display-name: TC-MEM-05 SENIOR category is accepted at age 65
+]]></system-out>
+</testcase>
+<testcase name="alreadyFrozenCannotBeFrozen()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:alreadyFrozenCannotBeFrozen()]
+display-name: TC-FRZ-03 DT R3: membership that is already frozen cannot be frozen again
+]]></system-out>
+</testcase>
+<testcase name="freezeDayBoundaries(MembershipType, int, String)[5]" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:freezeDayBoundaries(edu.istinye.gym.MembershipType, int, java.lang.String)]/[test-template-invocation:#5]
+display-name: TC-FRZ-04 BVA ANNUAL freeze of 60 days -> ACCEPTED
+]]></system-out>
+</testcase>
+<testcase name="invalidAgesRejected(int)[1]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:invalidAgesRejected(int)]/[test-template-invocation:#1]
+display-name: TC-REG-05 BVA/negative age -1 is rejected
+]]></system-out>
+</testcase>
+<testcase name="freezeDayBoundaries(MembershipType, int, String)[4]" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:freezeDayBoundaries(edu.istinye.gym.MembershipType, int, java.lang.String)]/[test-template-invocation:#4]
+display-name: TC-FRZ-04 BVA QUARTERLY freeze of 16 days -> NOT_ALLOWED
+]]></system-out>
+</testcase>
+<testcase name="invalidAgesRejected(int)[2]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:invalidAgesRejected(int)]/[test-template-invocation:#2]
+display-name: TC-REG-05 BVA/negative age 0 is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidAgesRejected(int)[3]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:invalidAgesRejected(int)]/[test-template-invocation:#3]
+display-name: TC-REG-05 BVA/negative age 15 is rejected
+]]></system-out>
+</testcase>
+<testcase name="freezeDayBoundaries(MembershipType, int, String)[6]" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:freezeDayBoundaries(edu.istinye.gym.MembershipType, int, java.lang.String)]/[test-template-invocation:#6]
+display-name: TC-FRZ-04 BVA ANNUAL freeze of 61 days -> NOT_ALLOWED
+]]></system-out>
+</testcase>
+<testcase name="freezeDayBoundaries(MembershipType, int, String)[1]" classname="edu.istinye.gym.FreezeTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:freezeDayBoundaries(edu.istinye.gym.MembershipType, int, java.lang.String)]/[test-template-invocation:#1]
+display-name: TC-FRZ-04 BVA QUARTERLY freeze of 6 days -> INVALID_INPUT
+]]></system-out>
+</testcase>
+<testcase name="freezeDayBoundaries(MembershipType, int, String)[3]" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:freezeDayBoundaries(edu.istinye.gym.MembershipType, int, java.lang.String)]/[test-template-invocation:#3]
+display-name: TC-FRZ-04 BVA QUARTERLY freeze of 15 days -> ACCEPTED
+]]></system-out>
+</testcase>
+<testcase name="freezeDayBoundaries(MembershipType, int, String)[2]" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[test-template:freezeDayBoundaries(edu.istinye.gym.MembershipType, int, java.lang.String)]/[test-template-invocation:#2]
+display-name: TC-FRZ-04 BVA QUARTERLY freeze of 7 days -> ACCEPTED
+]]></system-out>
+</testcase>
+<testcase name="validNameAccepted()" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[method:validNameAccepted()]
+display-name: TC-REG-01 EP valid name with Turkish letters is accepted and trimmed
+]]></system-out>
+</testcase>
+<testcase name="planConfiguration(MembershipType)[3]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:planConfiguration(edu.istinye.gym.MembershipType)]/[test-template-invocation:#3]
+display-name: TC-CAT-02 plan ANNUAL has consistent configuration
+]]></system-out>
+</testcase>
+<testcase name="invalidRenewalDiscountRejected(int)[1]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:invalidRenewalDiscountRejected(int)]/[test-template-invocation:#1]
+display-name: TC-FEE-02 BVA/negative renewal discount -1% is rejected
+]]></system-out>
+</testcase>
+<testcase name="planConfiguration(MembershipType)[1]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:planConfiguration(edu.istinye.gym.MembershipType)]/[test-template-invocation:#1]
+display-name: TC-CAT-02 plan MONTHLY has consistent configuration
+]]></system-out>
+</testcase>
+<testcase name="invalidRenewalDiscountRejected(int)[2]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:invalidRenewalDiscountRejected(int)]/[test-template-invocation:#2]
+display-name: TC-FEE-02 BVA/negative renewal discount 101% is rejected
+]]></system-out>
+</testcase>
+<testcase name="planConfiguration(MembershipType)[2]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:planConfiguration(edu.istinye.gym.MembershipType)]/[test-template-invocation:#2]
+display-name: TC-CAT-02 plan QUARTERLY has consistent configuration
+]]></system-out>
+</testcase>
+<testcase name="secondActiveMembershipRejected()" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[method:secondActiveMembershipRejected()]
+display-name: TC-MEM-06 Negative: second membership while one is active is rejected
+]]></system-out>
+</testcase>
+<testcase name="duplicateEmailDifferentCaseRejected()" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[method:duplicateEmailDifferentCaseRejected()]
+display-name: TC-REG-10 Negative: duplicate e-mail with different letter case is rejected
+]]></system-out>
+</testcase>
+<testcase name="tooShortIsInvalidInput()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:tooShortIsInvalidInput()]
+display-name: TC-FRZ-05 DT R4: freeze shorter than 7 days is invalid input
+]]></system-out>
+</testcase>
+<testcase name="invalidArguments()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:invalidArguments()]
+display-name: TC-FRZ-10 Negative: unknown membership id and null date are rejected
+]]></system-out>
+</testcase>
+<testcase name="nameLengthBoundaries(int, boolean)[4]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:nameLengthBoundaries(int, boolean)]/[test-template-invocation:#4]
+display-name: TC-REG-03 BVA name length 51 -> valid=false
+]]></system-out>
+</testcase>
+<testcase name="renewalFeeAndStartDate(LocalDate, String, LocalDate)[1]" classname="edu.istinye.gym.RenewalTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[test-template:renewalFeeAndStartDate(java.time.LocalDate, java.lang.String, java.time.LocalDate)]/[test-template-invocation:#1]
+display-name: TC-REN-01 renew on 2027-11-20 -> fee 6720.00 TL, new period starts 2027-12-01
+]]></system-out>
+</testcase>
+<testcase name="seniorEarlyRenewalCapped()" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[method:seniorEarlyRenewalCapped()]
+display-name: TC-REN-02 Senior early renewal is capped at 35% total discount
+]]></system-out>
+</testcase>
+<testcase name="nameLengthBoundaries(int, boolean)[1]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:nameLengthBoundaries(int, boolean)]/[test-template-invocation:#1]
+display-name: TC-REG-03 BVA name length 1 -> valid=false
+]]></system-out>
+</testcase>
+<testcase name="invalidNameRejected(String)[4]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:invalidNameRejected(java.lang.String)]/[test-template-invocation:#4]
+display-name: TC-REG-02 EP invalid name [Ali3] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidNameRejected(String)[3]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:invalidNameRejected(java.lang.String)]/[test-template-invocation:#3]
+display-name: TC-REG-02 EP invalid name [   ] is rejected
+]]></system-out>
+</testcase>
+<testcase name="nameLengthBoundaries(int, boolean)[3]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:nameLengthBoundaries(int, boolean)]/[test-template-invocation:#3]
+display-name: TC-REG-03 BVA name length 50 -> valid=true
+]]></system-out>
+</testcase>
+<testcase name="invalidNameRejected(String)[6]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:invalidNameRejected(java.lang.String)]/[test-template-invocation:#6]
+display-name: TC-REG-02 EP invalid name [Ali@] is rejected
+]]></system-out>
+</testcase>
+<testcase name="cumulativeLimitEnforced()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:cumulativeLimitEnforced()]
+display-name: TC-FRZ-06 DT R5: second freeze exceeding the remaining allowance is rejected
+]]></system-out>
+</testcase>
+<testcase name="nameLengthBoundaries(int, boolean)[2]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:nameLengthBoundaries(int, boolean)]/[test-template-invocation:#2]
+display-name: TC-REG-03 BVA name length 2 -> valid=true
+]]></system-out>
+</testcase>
+<testcase name="invalidNameRejected(String)[5]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:invalidNameRejected(java.lang.String)]/[test-template-invocation:#5]
+display-name: TC-REG-02 EP invalid name [Ali_Veli] is rejected
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[1]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#1]
+display-name: TC-REG-06 DT age 16, consent true -> accepted=true
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[2]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#2]
+display-name: TC-REG-06 DT age 17, consent true -> accepted=true
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[3]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0.012">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#3]
+display-name: TC-REG-06 DT age 16, consent false -> accepted=false
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[4]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#4]
+display-name: TC-REG-06 DT age 17, consent false -> accepted=false
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[5]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#5]
+display-name: TC-REG-06 DT age 18, consent true -> accepted=true
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[6]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#6]
+display-name: TC-REG-06 DT age 18, consent false -> accepted=true
+]]></system-out>
+</testcase>
+<testcase name="guardianConsentDecisionTable(int, boolean, boolean)[7]" classname="edu.istinye.gym.RegistrationTest$AgeTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:AgeTests]/[test-template:guardianConsentDecisionTable(int, boolean, boolean)]/[test-template-invocation:#7]
+display-name: TC-REG-06 DT age 40, consent false -> accepted=true
+]]></system-out>
+</testcase>
+<testcase name="freezeEffects()" classname="edu.istinye.gym.FreezeTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FreezeTest]/[method:freezeEffects()]
+display-name: TC-FRZ-08 DT R6: accepted freeze extends end date and changes status
+]]></system-out>
+</testcase>
+<testcase name="duplicateEmailRejected()" classname="edu.istinye.gym.RegistrationTest$EmailTests" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:EmailTests]/[method:duplicateEmailRejected()]
+display-name: TC-REG-09 Negative: duplicate e-mail is rejected
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[2]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#2]
+display-name: TC-CAT-01 BVA STUDENT at age 25 -> eligible=true
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[3]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#3]
+display-name: TC-CAT-01 BVA STUDENT at age 26 -> eligible=false
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[4]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#4]
+display-name: TC-CAT-01 BVA SENIOR at age 64 -> eligible=false
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[5]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#5]
+display-name: TC-CAT-01 BVA SENIOR at age 65 -> eligible=true
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[1]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#1]
+display-name: TC-CAT-01 BVA STUDENT at age 16 -> eligible=true
+]]></system-out>
+</testcase>
+<testcase name="startDateBoundaries(int, boolean)[1]" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:startDateBoundaries(int, boolean)]/[test-template-invocation:#1]
+display-name: TC-MEM-03 BVA start date offset -1 days -> valid=false
+]]></system-out>
+</testcase>
+<testcase name="startDateBoundaries(int, boolean)[3]" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:startDateBoundaries(int, boolean)]/[test-template-invocation:#3]
+display-name: TC-MEM-03 BVA start date offset 1 days -> valid=true
+]]></system-out>
+</testcase>
+<testcase name="startDateBoundaries(int, boolean)[2]" classname="edu.istinye.gym.MembershipCreationTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.MembershipCreationTest]/[test-template:startDateBoundaries(int, boolean)]/[test-template-invocation:#2]
+display-name: TC-MEM-03 BVA start date offset 0 days -> valid=true
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[6]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#6]
+display-name: TC-CAT-01 BVA SENIOR at age 100 -> eligible=true
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[7]" classname="edu.istinye.gym.FeeCalculatorTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#7]
+display-name: TC-CAT-01 BVA STANDARD at age 16 -> eligible=true
+]]></system-out>
+</testcase>
+<testcase name="categoryEligibility(MemberCategory, int, boolean)[8]" classname="edu.istinye.gym.FeeCalculatorTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.FeeCalculatorTest]/[test-template:categoryEligibility(edu.istinye.gym.MemberCategory, int, boolean)]/[test-template-invocation:#8]
+display-name: TC-CAT-01 BVA STANDARD at age 100 -> eligible=true
+]]></system-out>
+</testcase>
+<testcase name="invalidNameRejected(String)[2]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:invalidNameRejected(java.lang.String)]/[test-template-invocation:#2]
+display-name: TC-REG-02 EP invalid name [] is rejected
+]]></system-out>
+</testcase>
+<testcase name="invalidNameRejected(String)[1]" classname="edu.istinye.gym.RegistrationTest$NameTests" time="0.004">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RegistrationTest]/[nested-class:NameTests]/[test-template:invalidNameRejected(java.lang.String)]/[test-template-invocation:#1]
+display-name: TC-REG-02 EP invalid name [null] is rejected
+]]></system-out>
+</testcase>
+<testcase name="renewalFeeAndStartDate(LocalDate, String, LocalDate)[4]" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[test-template:renewalFeeAndStartDate(java.time.LocalDate, java.lang.String, java.time.LocalDate)]/[test-template-invocation:#4]
+display-name: TC-REN-01 renew on 2027-11-30 -> fee 7200.00 TL, new period starts 2027-12-01
+]]></system-out>
+</testcase>
+<testcase name="renewalFeeAndStartDate(LocalDate, String, LocalDate)[5]" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[test-template:renewalFeeAndStartDate(java.time.LocalDate, java.lang.String, java.time.LocalDate)]/[test-template-invocation:#5]
+display-name: TC-REN-01 renew on 2027-12-05 -> fee 7680.00 TL, new period starts 2027-12-05
+]]></system-out>
+</testcase>
+<testcase name="renewalFeeAndStartDate(LocalDate, String, LocalDate)[2]" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[test-template:renewalFeeAndStartDate(java.time.LocalDate, java.lang.String, java.time.LocalDate)]/[test-template-invocation:#2]
+display-name: TC-REN-01 renew on 2027-11-23 -> fee 6720.00 TL, new period starts 2027-12-01
+]]></system-out>
+</testcase>
+<testcase name="renewalFeeAndStartDate(LocalDate, String, LocalDate)[3]" classname="edu.istinye.gym.RenewalTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:edu.istinye.gym.RenewalTest]/[test-template:renewalFeeAndStartDate(java.time.LocalDate, java.lang.String, java.time.LocalDate)]/[test-template-invocation:#3]
+display-name: TC-REN-01 renew on 2027-11-24 -> fee 7200.00 TL, new period starts 2027-12-01
+]]></system-out>
+</testcase>
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+</testsuite>

@@ -49,25 +49,33 @@
 │  │  │  └─ TC-REN-01 renew on 2027-12-05 -> fee 7680.00 TL, new period starts 2027-12-05 ✔
 │  │  └─ TC-REN-02 Senior early renewal is capped at 35% total discount ✔
 │  ├─ FR-5 Membership freeze ✔
-│  │  └─ TC-FRZ-06 DT R5: second freeze exceeding the remaining allowance is rejected ✔
+│  │  ├─ TC-FRZ-11 Negative: membership that was already renewed cannot be frozen ✔
+│  │  ├─ TC-FRZ-06 DT R5: second freeze exceeding the remaining allowance is rejected ✔
+│  │  └─ hugeFreezeRejected(int) ✔
+│  │     ├─ TC-FRZ-12 Negative/BVA: freeze of 2147483647 days after 10 used is rejected with... ✔
+│  │     └─ TC-FRZ-12 Negative/BVA: freeze of 2147483642 days after 10 used is rejected with... ✔
 │  └─ FR-4 Membership creation ✔
+│     ├─ futureMembershipIsNotActiveBeforeStart(LocalDate, MembershipStatus) ✔
+│     │  ├─ TC-MEM-09 BVA status on 2026-12-01 for a membership starting 2026-12-10 -> NOT_S... ✔
+│     │  ├─ TC-MEM-09 BVA status on 2026-12-09 for a membership starting 2026-12-10 -> NOT_S... ✔
+│     │  └─ TC-MEM-09 BVA status on 2026-12-10 for a membership starting 2026-12-10 -> ACTIV... ✔
 │     └─ endDateIsLastDayOfPeriod(MembershipType, LocalDate) ✔
 │        ├─ TC-MEM-01 MONTHLY starting 2026-12-01 ends on 2026-12-31 ✔
 │        ├─ TC-MEM-01 QUARTERLY starting 2026-12-01 ends on 2027-02-28 ✔
 │        └─ TC-MEM-01 ANNUAL starting 2026-12-01 ends on 2027-11-30 ✔
 └─ JUnit Vintage ✔
 
-Test run finished after 310 ms
-[        16 containers found      ]
+Test run finished after 331 ms
+[        18 containers found      ]
 [         0 containers skipped    ]
-[        16 containers started    ]
+[        18 containers started    ]
 [         0 containers aborted    ]
-[        16 containers successful ]
+[        18 containers successful ]
 [         0 containers failed     ]
-[        41 tests found           ]
+[        47 tests found           ]
 [         0 tests skipped         ]
-[        41 tests started         ]
+[        47 tests started         ]
 [         0 tests aborted         ]
-[        41 tests successful      ]
+[        47 tests successful      ]
 [         0 tests failed          ]
 

@@ -118,7 +118,11 @@ public class MembershipService {
         if (status == MembershipStatus.FROZEN) {
             throw new IllegalStateException("Membership is already frozen");
         }
-        if (membership.getUsedFreezeDays() + days > membership.getType().getMaxFreezeDays()) {
+        if (hasBeenRenewed(membership)) {
+            throw new IllegalStateException("A renewed membership cannot be frozen");
+        }
+        // compared with the remaining allowance, so a huge value cannot overflow the sum
+        if (days > membership.getRemainingFreezeDays()) {
             throw new IllegalStateException("Freeze limit exceeded");
         }
         membership.applyFreeze(today, days);
@@ -135,10 +139,8 @@ public class MembershipService {
         if (status == MembershipStatus.FROZEN) {
             throw new IllegalStateException("Frozen membership cannot be renewed");
         }
-        for (Membership other : getMembershipsOf(current.getMember().getId())) {
-            if (other.getStartDate().isAfter(current.getEndDate())) {
-                throw new IllegalStateException("Membership has already been renewed");
-            }
+        if (hasBeenRenewed(current)) {
+            throw new IllegalStateException("Membership has already been renewed");
         }
         checkEligibility(current.getMember(), current.getCategory());
         int renewalDiscount = feeCalculator.renewalDiscountPercent(current.getEndDate(), today);
@@ -177,6 +179,15 @@ public class MembershipService {
         Membership membership = new Membership(id, member, type, category, start, end, fee);
         memberships.put(id, membership);
         return membership;
+    }
+
+    private boolean hasBeenRenewed(Membership membership) {
+        for (Membership other : getMembershipsOf(membership.getMember().getId())) {
+            if (other.getStartDate().isAfter(membership.getEndDate())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void checkEligibility(Member member, MemberCategory category) {
