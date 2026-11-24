@@ -119,4 +119,16 @@ class MembershipCreationTest {
                 () -> assertThrows(IllegalArgumentException.class, () -> service.createMembership(student.getId(),
                         MembershipType.MONTHLY, MemberCategory.STANDARD, TODAY, null)));
     }
+
+    @ParameterizedTest(name = "TC-MEM-09 BVA status on {0} for a membership starting 2026-12-10 -> {1}")
+    @Tag("regression")
+    @CsvSource({
+            "2026-12-01, NOT_STARTED",
+            "2026-12-09, NOT_STARTED",
+            "2026-12-10, ACTIVE"})
+    void futureMembershipIsNotActiveBeforeStart(LocalDate date, MembershipStatus expected) {
+        Membership m = service.createMembership(student.getId(), MembershipType.MONTHLY,
+                MemberCategory.STANDARD, LocalDate.of(2026, 12, 10), TODAY);
+        assertEquals(expected, m.getStatus(date));
+    }
 }

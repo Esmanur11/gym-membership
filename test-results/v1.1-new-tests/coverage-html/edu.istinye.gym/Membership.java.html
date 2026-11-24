@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Membership.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">edu.istinye.gym</a> &gt; <span class="el_source">Membership.java</span></div><h1>Membership.java</h1><pre class="source lang-java linenums">package edu.istinye.gym;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+/**
+ * One membership period of a member. The status is not stored; it is
+ * derived from the dates so that it is always consistent (FR-4, FR-5).
+ */
+public class Membership {
+    private final String id;
+    private final Member member;
+    private final MembershipType type;
+    private final MemberCategory category;
+    private final LocalDate startDate;
+    private LocalDate endDate;
+    private final BigDecimal fee;
+    private int usedFreezeDays;
+    private LocalDate frozenFrom;
+    private LocalDate frozenUntil;
+
+    Membership(String id, Member member, MembershipType type, MemberCategory category,
+<span class="fc" id="L23">               LocalDate startDate, LocalDate endDate, BigDecimal fee) {</span>
+<span class="fc" id="L24">        this.id = id;</span>
+<span class="fc" id="L25">        this.member = member;</span>
+<span class="fc" id="L26">        this.type = type;</span>
+<span class="fc" id="L27">        this.category = category;</span>
+<span class="fc" id="L28">        this.startDate = startDate;</span>
+<span class="fc" id="L29">        this.endDate = endDate;</span>
+<span class="fc" id="L30">        this.fee = fee;</span>
+<span class="fc" id="L31">    }</span>
+
+    /** Returns the status of this membership on the given date. */
+    public MembershipStatus getStatus(LocalDate date) {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (date.isAfter(endDate)) {</span>
+<span class="fc" id="L36">            return MembershipStatus.EXPIRED;</span>
+        }
+<span class="fc bfc" id="L38" title="All 6 branches covered.">        if (frozenUntil != null &amp;&amp; !date.isBefore(frozenFrom) &amp;&amp; !date.isAfter(frozenUntil)) {</span>
+<span class="fc" id="L39">            return MembershipStatus.FROZEN;</span>
+        }
+<span class="fc" id="L41">        return MembershipStatus.ACTIVE;</span>
+    }
+
+    void applyFreeze(LocalDate from, int days) {
+<span class="fc" id="L45">        this.frozenFrom = from;</span>
+<span class="fc" id="L46">        this.frozenUntil = from.plusDays(days - 1L);</span>
+<span class="fc" id="L47">        this.endDate = endDate.plusDays(days);</span>
+<span class="fc" id="L48">        this.usedFreezeDays += days;</span>
+<span class="fc" id="L49">    }</span>
+
+    public String getId() {
+<span class="fc" id="L52">        return id;</span>
+    }
+
+    public Member getMember() {
+<span class="fc" id="L56">        return member;</span>
+    }
+
+    public MembershipType getType() {
+<span class="fc" id="L60">        return type;</span>
+    }
+
+    public MemberCategory getCategory() {
+<span class="fc" id="L64">        return category;</span>
+    }
+
+    public LocalDate getStartDate() {
+<span class="fc" id="L68">        return startDate;</span>
+    }
+
+    public LocalDate getEndDate() {
+<span class="fc" id="L72">        return endDate;</span>
+    }
+
+    public BigDecimal getFee() {
+<span class="fc" id="L76">        return fee;</span>
+    }
+
+    public int getUsedFreezeDays() {
+<span class="fc" id="L80">        return usedFreezeDays;</span>
+    }
+
+    public int getRemainingFreezeDays() {
+<span class="fc" id="L84">        return type.getMaxFreezeDays() - usedFreezeDays;</span>
+    }
+
+    public LocalDate getFrozenUntil() {
+<span class="fc" id="L88">        return frozenUntil;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

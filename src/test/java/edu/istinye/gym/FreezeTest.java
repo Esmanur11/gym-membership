@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
 
@@ -64,23 +65,28 @@ class FreezeTest {
         assertThrows(IllegalStateException.class, () -> service.freezeMembership(m.getId(), 7, stillFrozen));
     }
 
-    @ParameterizedTest(name = "TC-FRZ-04 BVA {0} freeze of {1} days -> accepted={2}")
+    @ParameterizedTest(name = "TC-FRZ-04 BVA {0} freeze of {1} days -> {2}")
     @CsvSource({
-            "QUARTERLY, 6,  false",
-            "QUARTERLY, 7,  true",
-            "QUARTERLY, 15, true",
-            "QUARTERLY, 16, false",
-            "ANNUAL,    60, true",
-            "ANNUAL,    61, false"})
-    void freezeDayBoundaries(MembershipType type, int days, boolean accepted) {
+            "QUARTERLY, 6,  INVALID_INPUT",
+            "QUARTERLY, 7,  ACCEPTED",
+            "QUARTERLY, 15, ACCEPTED",
+            "QUARTERLY, 16, NOT_ALLOWED",
+            "ANNUAL,    60, ACCEPTED",
+            "ANNUAL,    61, NOT_ALLOWED"})
+    void freezeDayBoundaries(MembershipType type, int days, String outcome) {
         Membership m = create(type);
-        if (accepted) {
-            service.freezeMembership(m.getId(), days, DAY_10);
-            assertEquals(days, m.getUsedFreezeDays());
-        } else {
-            assertThrows(RuntimeException.class, () -> service.freezeMembership(m.getId(), days, DAY_10));
-            assertEquals(0, m.getUsedFreezeDays());
+        switch (outcome) {
+            case "ACCEPTED":
+                service.freezeMembership(m.getId(), days, DAY_10);
+                assertEquals(days, m.getUsedFreezeDays());
+                return;
+            case "INVALID_INPUT":
+                assertThrows(IllegalArgumentException.class, () -> service.freezeMembership(m.getId(), days, DAY_10));
+                break;
+            default:
+                assertThrows(IllegalStateException.class, () -> service.freezeMembership(m.getId(), days, DAY_10));
         }
+        assertEquals(0, m.getUsedFreezeDays());
     }
 
     @Test
@@ -142,5 +148,29 @@ class FreezeTest {
         Membership m = create(MembershipType.ANNUAL);
         assertThrows(IllegalArgumentException.class, () -> service.freezeMembership("S9999", 7, DAY_10));
         assertThrows(IllegalArgumentException.class, () -> service.freezeMembership(m.getId(), 7, null));
+    }
+
+    @Test
+    @Tag("regression")
+    @DisplayName("TC-FRZ-11 Negative: membership that was already renewed cannot be frozen")
+    void renewedMembershipCannotBeFrozen() {
+        Membership m = create(MembershipType.ANNUAL);              // 2026-12-01 .. 2027-11-30
+        LocalDate renewalDay = LocalDate.of(2027, 11, 1);
+        Membership next = service.renewMembership(m.getId(), MembershipType.ANNUAL, renewalDay);
+        LocalDate oldEnd = m.getEndDate();
+        assertThrows(IllegalStateException.class, () -> service.freezeMembership(m.getId(), 14, renewalDay.plusDays(1)));
+        assertEquals(oldEnd, m.getEndDate());
+        assertTrue(next.getStartDate().isAfter(m.getEndDate()), "periods must not overlap");
+    }
+
+    @ParameterizedTest(name = "TC-FRZ-12 Negative/BVA: freeze of {0} days after 10 used is rejected without overflow")
+    @Tag("regression")
+    @ValueSource(ints = {Integer.MAX_VALUE, Integer.MAX_VALUE - 5})
+    void hugeFreezeRejected(int days) {
+        Membership m = create(MembershipType.QUARTERLY);
+        service.freezeMembership(m.getId(), 10, DAY_10);
+        LocalDate later = DAY_10.plusDays(20);
+        assertThrows(IllegalStateException.class, () -> service.freezeMembership(m.getId(), days, later));
+        assertEquals(10, m.getUsedFreezeDays());
     }
 }

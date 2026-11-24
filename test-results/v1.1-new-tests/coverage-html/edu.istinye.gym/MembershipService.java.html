@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MembershipService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">edu.istinye.gym</a> &gt; <span class="el_source">MembershipService.java</span></div><h1>MembershipService.java</h1><pre class="source lang-java linenums">package edu.istinye.gym;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+/**
+ * Main service of the application. Applies all business rules for
+ * registration (FR-1), category eligibility (FR-2), membership creation (FR-4),
+ * freezing (FR-5) and renewal (FR-6). Invalid input is rejected with
+ * IllegalArgumentException; operations not allowed in the current state are
+ * rejected with IllegalStateException (FR-7).
+ *
+ * &quot;today&quot; is passed as a parameter instead of calling LocalDate.now(), so the
+ * behaviour is deterministic and testable.
+ */
+<span class="fc" id="L21">public class MembershipService {</span>
+
+    public static final int MIN_AGE = 16;
+    public static final int ADULT_AGE = 18;
+    public static final int MAX_AGE = 100;
+    public static final int NAME_MIN_LENGTH = 2;
+    public static final int NAME_MAX_LENGTH = 50;
+    public static final int MIN_FREEZE_DAYS = 7;
+
+<span class="fc" id="L30">    private static final Pattern NAME_PATTERN = Pattern.compile(&quot;[\\p{L} ]+&quot;);</span>
+<span class="fc" id="L31">    private static final Pattern EMAIL_PATTERN = Pattern.compile(&quot;^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$&quot;);</span>
+
+<span class="fc" id="L33">    private final Map&lt;String, Member&gt; members = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L34">    private final Map&lt;String, Membership&gt; memberships = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L35">    private final FeeCalculator feeCalculator = new FeeCalculator();</span>
+<span class="fc" id="L36">    private int memberCounter = 0;</span>
+<span class="fc" id="L37">    private int membershipCounter = 0;</span>
+
+    // ---------------------------------------------------------------- FR-1
+
+    public Member registerMember(String name, int age, String email, boolean guardianConsent) {
+<span class="fc bfc" id="L42" title="All 4 branches covered.">        if (name == null || name.trim().isEmpty()) {</span>
+<span class="fc" id="L43">            throw new IllegalArgumentException(&quot;Name is required&quot;);</span>
+        }
+<span class="fc" id="L45">        String cleanName = name.trim();</span>
+<span class="fc bfc" id="L46" title="All 4 branches covered.">        if (cleanName.length() &lt; NAME_MIN_LENGTH || cleanName.length() &gt; NAME_MAX_LENGTH) {</span>
+<span class="fc" id="L47">            throw new IllegalArgumentException(&quot;Name must be 2-50 characters&quot;);</span>
+        }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (!NAME_PATTERN.matcher(cleanName).matches()) {</span>
+<span class="fc" id="L50">            throw new IllegalArgumentException(&quot;Name may contain only letters and spaces&quot;);</span>
+        }
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (age &lt; MIN_AGE) {</span>
+<span class="fc" id="L53">            throw new IllegalArgumentException(&quot;Member must be at least 16 years old&quot;);</span>
+        }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (age &gt; MAX_AGE) {</span>
+<span class="fc" id="L56">            throw new IllegalArgumentException(&quot;Age must not exceed 100&quot;);</span>
+        }
+<span class="fc bfc" id="L58" title="All 4 branches covered.">        if (age &lt; ADULT_AGE &amp;&amp; !guardianConsent) {</span>
+<span class="fc" id="L59">            throw new IllegalArgumentException(&quot;Members under 18 need guardian consent&quot;);</span>
+        }
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (email == null || !EMAIL_PATTERN.matcher(email.trim()).matches()) {</span>
+<span class="fc" id="L62">            throw new IllegalArgumentException(&quot;Invalid e-mail address&quot;);</span>
+        }
+<span class="fc" id="L64">        String cleanEmail = email.trim();</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        for (Member m : members.values()) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            if (m.getEmail().equalsIgnoreCase(cleanEmail)) {</span>
+<span class="fc" id="L67">                throw new IllegalArgumentException(&quot;E-mail is already registered&quot;);</span>
+            }
+<span class="fc" id="L69">        }</span>
+<span class="fc" id="L70">        memberCounter++;</span>
+<span class="fc" id="L71">        String id = String.format(&quot;M%04d&quot;, memberCounter);</span>
+<span class="fc" id="L72">        Member member = new Member(id, cleanName, age, cleanEmail, guardianConsent);</span>
+<span class="fc" id="L73">        members.put(id, member);</span>
+<span class="fc" id="L74">        return member;</span>
+    }
+
+    // ---------------------------------------------------------------- FR-4
+
+    public Membership createMembership(String memberId, MembershipType type, MemberCategory category,
+                                       LocalDate startDate, LocalDate today) {
+<span class="fc" id="L81">        Member member = requireMember(memberId);</span>
+<span class="fc bfc" id="L82" title="All 8 branches covered.">        if (type == null || category == null || startDate == null || today == null) {</span>
+<span class="fc" id="L83">            throw new IllegalArgumentException(&quot;Type, category and dates are required&quot;);</span>
+        }
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (startDate.isBefore(today)) {</span>
+<span class="fc" id="L86">            throw new IllegalArgumentException(&quot;Start date cannot be in the past&quot;);</span>
+        }
+<span class="fc" id="L88">        checkEligibility(member, category);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (Membership existing : getMembershipsOf(memberId)) {</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            if (existing.getStatus(today) != MembershipStatus.EXPIRED) {</span>
+<span class="fc" id="L91">                throw new IllegalStateException(&quot;Member already has an active membership&quot;);</span>
+            }
+<span class="fc" id="L93">        }</span>
+<span class="fc" id="L94">        BigDecimal fee = feeCalculator.calculateFee(type, category, 0);</span>
+<span class="fc" id="L95">        return addMembership(member, type, category, startDate, fee);</span>
+    }
+
+    // ---------------------------------------------------------------- FR-5
+
+    public void freezeMembership(String membershipId, int days, LocalDate today) {
+<span class="fc" id="L101">        Membership membership = requireMembership(membershipId);</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (today == null) {</span>
+<span class="fc" id="L103">            throw new IllegalArgumentException(&quot;Date is required&quot;);</span>
+        }
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        if (days &lt; MIN_FREEZE_DAYS) {</span>
+<span class="fc" id="L106">            throw new IllegalArgumentException(&quot;A freeze must be at least 7 days&quot;);</span>
+        }
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if (!membership.getType().isFreezable()) {</span>
+<span class="fc" id="L109">            throw new IllegalStateException(&quot;Monthly memberships cannot be frozen&quot;);</span>
+        }
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (today.isBefore(membership.getStartDate())) {</span>
+<span class="fc" id="L112">            throw new IllegalStateException(&quot;Membership has not started yet&quot;);</span>
+        }
+<span class="fc" id="L114">        MembershipStatus status = membership.getStatus(today);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        if (status == MembershipStatus.EXPIRED) {</span>
+<span class="fc" id="L116">            throw new IllegalStateException(&quot;Expired membership cannot be frozen&quot;);</span>
+        }
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (status == MembershipStatus.FROZEN) {</span>
+<span class="fc" id="L119">            throw new IllegalStateException(&quot;Membership is already frozen&quot;);</span>
+        }
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (membership.getUsedFreezeDays() + days &gt; membership.getType().getMaxFreezeDays()) {</span>
+<span class="fc" id="L122">            throw new IllegalStateException(&quot;Freeze limit exceeded&quot;);</span>
+        }
+<span class="fc" id="L124">        membership.applyFreeze(today, days);</span>
+<span class="fc" id="L125">    }</span>
+
+    // ---------------------------------------------------------------- FR-6
+
+    public Membership renewMembership(String membershipId, MembershipType newType, LocalDate today) {
+<span class="fc" id="L130">        Membership current = requireMembership(membershipId);</span>
+<span class="fc bfc" id="L131" title="All 4 branches covered.">        if (newType == null || today == null) {</span>
+<span class="fc" id="L132">            throw new IllegalArgumentException(&quot;Type and date are required&quot;);</span>
+        }
+<span class="fc" id="L134">        MembershipStatus status = current.getStatus(today);</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">        if (status == MembershipStatus.FROZEN) {</span>
+<span class="fc" id="L136">            throw new IllegalStateException(&quot;Frozen membership cannot be renewed&quot;);</span>
+        }
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        for (Membership other : getMembershipsOf(current.getMember().getId())) {</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">            if (other.getStartDate().isAfter(current.getEndDate())) {</span>
+<span class="fc" id="L140">                throw new IllegalStateException(&quot;Membership has already been renewed&quot;);</span>
+            }
+<span class="fc" id="L142">        }</span>
+<span class="fc" id="L143">        checkEligibility(current.getMember(), current.getCategory());</span>
+<span class="fc" id="L144">        int renewalDiscount = feeCalculator.renewalDiscountPercent(current.getEndDate(), today);</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        LocalDate newStart = (status == MembershipStatus.EXPIRED) ? today : current.getEndDate().plusDays(1);</span>
+<span class="fc" id="L146">        BigDecimal fee = feeCalculator.calculateFee(newType, current.getCategory(), renewalDiscount);</span>
+<span class="fc" id="L147">        return addMembership(current.getMember(), newType, current.getCategory(), newStart, fee);</span>
+    }
+
+    // ---------------------------------------------------------------- queries
+
+    public Member findMember(String memberId) {
+<span class="fc" id="L153">        return members.get(memberId);</span>
+    }
+
+    public Membership findMembership(String membershipId) {
+<span class="fc" id="L157">        return memberships.get(membershipId);</span>
+    }
+
+    public List&lt;Membership&gt; getMembershipsOf(String memberId) {
+<span class="fc" id="L161">        List&lt;Membership&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (Membership m : memberships.values()) {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">            if (m.getMember().getId().equals(memberId)) {</span>
+<span class="fc" id="L164">                result.add(m);</span>
+            }
+<span class="fc" id="L166">        }</span>
+<span class="fc" id="L167">        return result;</span>
+    }
+
+    // ---------------------------------------------------------------- helpers
+
+    private Membership addMembership(Member member, MembershipType type, MemberCategory category,
+                                     LocalDate start, BigDecimal fee) {
+<span class="fc" id="L174">        LocalDate end = start.plusMonths(type.getMonths()).minusDays(1);</span>
+<span class="fc" id="L175">        membershipCounter++;</span>
+<span class="fc" id="L176">        String id = String.format(&quot;S%04d&quot;, membershipCounter);</span>
+<span class="fc" id="L177">        Membership membership = new Membership(id, member, type, category, start, end, fee);</span>
+<span class="fc" id="L178">        memberships.put(id, membership);</span>
+<span class="fc" id="L179">        return membership;</span>
+    }
+
+    private void checkEligibility(Member member, MemberCategory category) {
+<span class="fc bfc" id="L183" title="All 2 branches covered.">        if (!category.isEligible(member.getAge())) {</span>
+<span class="fc" id="L184">            throw new IllegalArgumentException(category + &quot; category is not allowed for age &quot; + member.getAge());</span>
+        }
+<span class="fc" id="L186">    }</span>
+
+    private Member requireMember(String memberId) {
+<span class="fc" id="L189">        Member member = members.get(memberId);</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        if (member == null) {</span>
+<span class="fc" id="L191">            throw new IllegalArgumentException(&quot;Member not found: &quot; + memberId);</span>
+        }
+<span class="fc" id="L193">        return member;</span>
+    }
+
+    private Membership requireMembership(String membershipId) {
+<span class="fc" id="L197">        Membership membership = memberships.get(membershipId);</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">        if (membership == null) {</span>
+<span class="fc" id="L199">            throw new IllegalArgumentException(&quot;Membership not found: &quot; + membershipId);</span>
+        }
+<span class="fc" id="L201">        return membership;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
