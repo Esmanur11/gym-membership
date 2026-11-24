@@ -26,7 +26,7 @@ freezing, renewal), tested with JUnit 5 and measured with JaCoCo.
 - `test-results/v1.1-new-tests/` – extended suite on v1.1 (113 passed, 5 failed: defects D8–D10)
 - `test-results/v1.2/` – results after fixing D8–D10 (118 passed) and coverage report (`coverage-html/index.html`)
 - `test-results/v1.2-regression-tag/` – the regression-tagged subset on v1.2 (47 passed)
-- `test-results/v1.3/` – final results after fixing D8–D11 (119 passed, `console-output.txt`); the regression subset now has 48 tests
+- `test-results/v1.3/` – final results after fixing D11 (all defects D1–D11 fixed) (119 passed, `console-output.txt`); the regression subset now has 48 tests
 
 ## Versions (Git tags)
 - `v1.0` – first implementation with seven deliberately seeded defects D1–D7 (fault seeding)
