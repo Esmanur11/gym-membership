@@ -139,6 +139,9 @@ public class MembershipService {
         if (status == MembershipStatus.FROZEN) {
             throw new IllegalStateException("Frozen membership cannot be renewed");
         }
+        if (status == MembershipStatus.NOT_STARTED) {
+            throw new IllegalStateException("A membership that has not started yet cannot be renewed");
+        }
         if (hasBeenRenewed(current)) {
             throw new IllegalStateException("Membership has already been renewed");
         }

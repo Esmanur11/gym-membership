@@ -16,12 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * FR-5 Freezing a membership.
  *
  * Decision table:
- *            | R1 | R2 | R3 | R4 | R5 | R6
- * plan freezable   | N  | Y  | Y  | Y  | Y  | Y
- * status ACTIVE    | -  | EXP| FRZ| Y  | Y  | Y
- * days >= 7        | -  | -  | -  | N  | Y  | Y
- * used+days <= max | -  | -  | -  | -  | N  | Y
- * outcome          | ISE| ISE| ISE| IAE| ISE| accept
+ *                  | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8
+ * plan freezable   | N  | Y  | Y  | Y  | Y  | Y  | Y  | Y
+ * already started  | -  | N  | Y  | Y  | Y  | Y  | Y  | Y
+ * status ACTIVE    | -  | -  | EXP| FRZ| Y  | Y  | Y  | Y
+ * not yet renewed  | -  | -  | -  | -  | N  | Y  | Y  | Y
+ * days >= 7        | -  | -  | -  | -  | -  | N  | Y  | Y
+ * days <= remaining| -  | -  | -  | -  | -  | -  | N  | Y
+ * outcome          | ISE| ISE| ISE| ISE| ISE| IAE| ISE| accept
  */
 @DisplayName("FR-5 Membership freeze")
 class FreezeTest {
