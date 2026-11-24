@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MemberCategory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">edu.istinye.gym</a> &gt; <span class="el_source">MemberCategory.java</span></div><h1>MemberCategory.java</h1><pre class="source lang-java linenums">package edu.istinye.gym;
+
+/**
+ * Member categories and their discount percentages (FR-2, FR-3).
+ */
+<span class="fc" id="L6">public enum MemberCategory {</span>
+<span class="fc" id="L7">    STANDARD(0),</span>
+<span class="fc" id="L8">    STUDENT(20),</span>
+<span class="fc" id="L9">    SENIOR(30);</span>
+
+    private final int discountPercent;
+
+<span class="fc" id="L13">    MemberCategory(int discountPercent) {</span>
+<span class="fc" id="L14">        this.discountPercent = discountPercent;</span>
+<span class="fc" id="L15">    }</span>
+
+    public int getDiscountPercent() {
+<span class="fc" id="L18">        return discountPercent;</span>
+    }
+
+    /**
+     * FR-2: STUDENT is allowed for ages 16-25, SENIOR for ages 65 and above,
+     * STANDARD for every registered member.
+     */
+    public boolean isEligible(int age) {
+<span class="fc bfc" id="L26" title="All 3 branches covered.">        switch (this) {</span>
+            case STUDENT:
+<span class="pc bpc" id="L28" title="1 of 4 branches missed.">                return age &gt;= 16 &amp;&amp; age &lt;= 25;</span>
+            case SENIOR:
+<span class="fc bfc" id="L30" title="All 2 branches covered.">                return age &gt;= 65;</span>
+            default:
+<span class="fc" id="L32">                return true;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

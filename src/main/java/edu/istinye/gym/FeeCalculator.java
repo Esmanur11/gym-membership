@@ -30,7 +30,8 @@ public class FeeCalculator {
         if (renewalDiscountPercent < 0 || renewalDiscountPercent > 100) {
             throw new IllegalArgumentException("Renewal discount must be between 0 and 100");
         }
-        int totalDiscount = category.getDiscountPercent() + renewalDiscountPercent;
+        int totalDiscount = Math.min(category.getDiscountPercent() + renewalDiscountPercent,
+                MAX_DISCOUNT_PERCENT);
         BigDecimal multiplier = HUNDRED.subtract(BigDecimal.valueOf(totalDiscount)).divide(HUNDRED);
         return type.getBasePrice().multiply(multiplier).setScale(2, RoundingMode.HALF_UP);
     }
@@ -48,7 +49,7 @@ public class FeeCalculator {
             return 0;
         }
         long daysLeft = ChronoUnit.DAYS.between(today, currentEndDate);
-        if (daysLeft > EARLY_RENEWAL_DAYS) {
+        if (daysLeft >= EARLY_RENEWAL_DAYS) {
             return EARLY_RENEWAL_DISCOUNT;
         }
         return LATE_RENEWAL_DISCOUNT;

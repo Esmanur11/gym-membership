@@ -49,13 +49,13 @@ public class MembershipService {
         if (!NAME_PATTERN.matcher(cleanName).matches()) {
             throw new IllegalArgumentException("Name may contain only letters and spaces");
         }
-        if (age <= MIN_AGE) {
+        if (age < MIN_AGE) {
             throw new IllegalArgumentException("Member must be at least 16 years old");
         }
         if (age > MAX_AGE) {
             throw new IllegalArgumentException("Age must not exceed 100");
         }
-        if (age < 17 && !guardianConsent) {
+        if (age < ADULT_AGE && !guardianConsent) {
             throw new IllegalArgumentException("Members under 18 need guardian consent");
         }
         if (email == null || !EMAIL_PATTERN.matcher(email.trim()).matches()) {
@@ -63,7 +63,7 @@ public class MembershipService {
         }
         String cleanEmail = email.trim();
         for (Member m : members.values()) {
-            if (m.getEmail().equals(cleanEmail)) {
+            if (m.getEmail().equalsIgnoreCase(cleanEmail)) {
                 throw new IllegalArgumentException("E-mail is already registered");
             }
         }
@@ -118,7 +118,7 @@ public class MembershipService {
         if (status == MembershipStatus.FROZEN) {
             throw new IllegalStateException("Membership is already frozen");
         }
-        if (days > membership.getType().getMaxFreezeDays()) {
+        if (membership.getUsedFreezeDays() + days > membership.getType().getMaxFreezeDays()) {
             throw new IllegalStateException("Freeze limit exceeded");
         }
         membership.applyFreeze(today, days);
@@ -171,7 +171,7 @@ public class MembershipService {
 
     private Membership addMembership(Member member, MembershipType type, MemberCategory category,
                                      LocalDate start, BigDecimal fee) {
-        LocalDate end = start.plusMonths(type.getMonths());
+        LocalDate end = start.plusMonths(type.getMonths()).minusDays(1);
         membershipCounter++;
         String id = String.format("S%04d", membershipCounter);
         Membership membership = new Membership(id, member, type, category, start, end, fee);
