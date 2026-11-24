@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JaCoCo Coverage Report,edu.istinye.gym,FeeCalculator,0,77,0,16,0,17,0,12,0,4
+JaCoCo Coverage Report,edu.istinye.gym,MembershipStatus,0,21,0,0,0,4,0,1,0,1
+JaCoCo Coverage Report,edu.istinye.gym,MemberCategory,0,57,1,8,0,12,1,8,0,4
+JaCoCo Coverage Report,edu.istinye.gym,MembershipService,7,523,3,73,1,102,2,49,0,13
+JaCoCo Coverage Report,edu.istinye.gym,Member,11,30,0,0,2,11,2,5,2,5
+JaCoCo Coverage Report,edu.istinye.gym,Membership,0,107,0,8,0,29,0,17,0,13
+JaCoCo Coverage Report,edu.istinye.gym,MembershipType,0,69,0,2,0,13,0,7,0,6
+JaCoCo Coverage Report,edu.istinye.gym,App,11,113,0,0,3,17,1,2,1,2

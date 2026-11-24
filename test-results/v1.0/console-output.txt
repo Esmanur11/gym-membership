@@ -1,0 +1,409 @@
+Created              S0001 ANNUAL/STUDENT 2026-12-01 -> 2027-12-01, fee 7680.00 TL, status ACTIVE
+Frozen for 30 days   S0001 ANNUAL/STUDENT 2026-12-01 -> 2027-12-31, fee 7680.00 TL, status FROZEN
+Renewed early        S0002 QUARTERLY/STUDENT 2028-01-01 -> 2028-04-01, fee 1890.00 TL, status ACTIVE
+Rejected registration: Member must be at least 16 years old
+╷
+├─ JUnit Platform Suite ✔
+├─ JUnit Jupiter ✔
+│  ├─ FR-2/FR-3 Fees, discounts and category eligibility ✔
+│  │  ├─ feeDecisionTable(MembershipType, MemberCategory, int, String) ✔
+│  │  │  ├─ TC-FEE-01 DT MONTHLY + STANDARD + renewal 0% -> 1000.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT MONTHLY + STUDENT + renewal 0% -> 800.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT MONTHLY + SENIOR + renewal 0% -> 700.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT QUARTERLY + STANDARD + renewal 0% -> 2700.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT QUARTERLY + STUDENT + renewal 0% -> 2160.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT QUARTERLY + STANDARD + renewal 5% -> 2565.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT ANNUAL + SENIOR + renewal 0% -> 6720.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT ANNUAL + STANDARD + renewal 10% -> 8640.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT ANNUAL + STUDENT + renewal 5% -> 7200.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT ANNUAL + STUDENT + renewal 10% -> 6720.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT ANNUAL + SENIOR + renewal 5% -> 6240.00 TL ✔
+│  │  │  ├─ TC-FEE-01 DT ANNUAL + SENIOR + renewal 10% -> 6240.00 TL ✘ expected: <6240.00> but was: <5760.00>
+│  │  │  └─ TC-FEE-01 DT MONTHLY + SENIOR + renewal 10% -> 650.00 TL ✘ expected: <650.00> but was: <600.00>
+│  │  ├─ categoryEligibility(MemberCategory, int, boolean) ✔
+│  │  │  ├─ TC-CAT-01 BVA STUDENT at age 16 -> eligible=true ✔
+│  │  │  ├─ TC-CAT-01 BVA STUDENT at age 25 -> eligible=true ✔
+│  │  │  ├─ TC-CAT-01 BVA STUDENT at age 26 -> eligible=false ✔
+│  │  │  ├─ TC-CAT-01 BVA SENIOR at age 64 -> eligible=false ✔
+│  │  │  ├─ TC-CAT-01 BVA SENIOR at age 65 -> eligible=true ✔
+│  │  │  ├─ TC-CAT-01 BVA SENIOR at age 100 -> eligible=true ✔
+│  │  │  ├─ TC-CAT-01 BVA STANDARD at age 16 -> eligible=true ✔
+│  │  │  └─ TC-CAT-01 BVA STANDARD at age 100 -> eligible=true ✔
+│  │  ├─ TC-FEE-05 Negative: null dates for renewal discount are rejected ✔
+│  │  ├─ invalidRenewalDiscountRejected(int) ✔
+│  │  │  ├─ TC-FEE-02 BVA/negative renewal discount -1% is rejected ✔
+│  │  │  └─ TC-FEE-02 BVA/negative renewal discount 101% is rejected ✔
+│  │  ├─ renewalDiscountBoundaries(LocalDate, int) ✔
+│  │  │  ├─ TC-FEE-04 BVA renew 2027-11-22 -> renewal discount 10% ✔
+│  │  │  ├─ TC-FEE-04 BVA renew 2027-11-23 -> renewal discount 10% ✘ expected: <10> but was: <5>
+│  │  │  ├─ TC-FEE-04 BVA renew 2027-11-24 -> renewal discount 5% ✔
+│  │  │  ├─ TC-FEE-04 BVA renew 2027-11-30 -> renewal discount 5% ✔
+│  │  │  └─ TC-FEE-04 BVA renew 2027-12-01 -> renewal discount 0% ✔
+│  │  ├─ TC-FEE-03 Negative: null plan or category is rejected ✔
+│  │  └─ planConfiguration(MembershipType) ✔
+│  │     ├─ TC-CAT-02 plan MONTHLY has consistent configuration ✔
+│  │     ├─ TC-CAT-02 plan QUARTERLY has consistent configuration ✔
+│  │     └─ TC-CAT-02 plan ANNUAL has consistent configuration ✔
+│  ├─ FR-1 Member registration ✔
+│  │  ├─ E-mail validation ✔
+│  │  │  ├─ validEmailAccepted(String) ✔
+│  │  │  │  ├─ TC-REG-07 EP valid e-mail [a@b.co] ✔
+│  │  │  │  ├─ TC-REG-07 EP valid e-mail [ayse.yilmaz@istinye.edu.tr] ✔
+│  │  │  │  └─ TC-REG-07 EP valid e-mail [  user@mail.com  ] ✔
+│  │  │  ├─ TC-REG-09 Negative: duplicate e-mail is rejected ✔
+│  │  │  ├─ TC-REG-10 Negative: duplicate e-mail with different letter case is rejected ✘ Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+│  │  │  ├─ TC-REG-11 Different e-mails get sequential member ids ✔
+│  │  │  └─ invalidEmailRejected(String) ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [null] is rejected ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [] is rejected ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [abc] is rejected ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [abc@] is rejected ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [@mail.com] is rejected ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [a@mail] is rejected ✔
+│  │  │     ├─ TC-REG-08 EP invalid e-mail [a b@mail.com] is rejected ✔
+│  │  │     └─ TC-REG-08 EP invalid e-mail [a@@mail.com] is rejected ✔
+│  │  ├─ Age validation ✔
+│  │  │  ├─ validAgesAccepted(int) ✔
+│  │  │  │  ├─ TC-REG-04 BVA age 16 (with consent) is accepted ✘ Member must be at least 16 years old
+│  │  │  │  ├─ TC-REG-04 BVA age 17 (with consent) is accepted ✔
+│  │  │  │  ├─ TC-REG-04 BVA age 18 (with consent) is accepted ✔
+│  │  │  │  ├─ TC-REG-04 BVA age 99 (with consent) is accepted ✔
+│  │  │  │  └─ TC-REG-04 BVA age 100 (with consent) is accepted ✔
+│  │  │  ├─ invalidAgesRejected(int) ✔
+│  │  │  │  ├─ TC-REG-05 BVA/negative age -1 is rejected ✔
+│  │  │  │  ├─ TC-REG-05 BVA/negative age 0 is rejected ✔
+│  │  │  │  ├─ TC-REG-05 BVA/negative age 15 is rejected ✔
+│  │  │  │  └─ TC-REG-05 BVA/negative age 101 is rejected ✔
+│  │  │  └─ guardianConsentDecisionTable(int, boolean, boolean) ✔
+│  │  │     ├─ TC-REG-06 DT age 16, consent true -> accepted=true ✘ Member must be at least 16 years old
+│  │  │     ├─ TC-REG-06 DT age 17, consent true -> accepted=true ✔
+│  │  │     ├─ TC-REG-06 DT age 16, consent false -> accepted=false ✘ expected: <true> but was: <false>
+│  │  │     ├─ TC-REG-06 DT age 17, consent false -> accepted=false ✘ Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+│  │  │     ├─ TC-REG-06 DT age 18, consent true -> accepted=true ✔
+│  │  │     ├─ TC-REG-06 DT age 18, consent false -> accepted=true ✔
+│  │  │     └─ TC-REG-06 DT age 40, consent false -> accepted=true ✔
+│  │  └─ Name validation ✔
+│  │     ├─ nameLengthBoundaries(int, boolean) ✔
+│  │     │  ├─ TC-REG-03 BVA name length 1 -> valid=false ✔
+│  │     │  ├─ TC-REG-03 BVA name length 2 -> valid=true ✔
+│  │     │  ├─ TC-REG-03 BVA name length 50 -> valid=true ✔
+│  │     │  └─ TC-REG-03 BVA name length 51 -> valid=false ✔
+│  │     ├─ TC-REG-01 EP valid name with Turkish letters is accepted and trimmed ✔
+│  │     └─ invalidNameRejected(String) ✔
+│  │        ├─ TC-REG-02 EP invalid name [null] is rejected ✔
+│  │        ├─ TC-REG-02 EP invalid name [] is rejected ✔
+│  │        ├─ TC-REG-02 EP invalid name [   ] is rejected ✔
+│  │        ├─ TC-REG-02 EP invalid name [Ali3] is rejected ✔
+│  │        ├─ TC-REG-02 EP invalid name [Ali_Veli] is rejected ✔
+│  │        └─ TC-REG-02 EP invalid name [Ali@] is rejected ✔
+│  ├─ FR-6 Membership renewal ✔
+│  │  ├─ TC-REN-05 Negative: a membership cannot be renewed twice ✔
+│  │  ├─ renewalFeeAndStartDate(LocalDate, String, LocalDate) ✔
+│  │  │  ├─ TC-REN-01 renew on 2027-11-20 -> fee 6720.00 TL, new period starts 2027-12-01 ✘ Multiple Failures (1 failure)
+│  │  │  │        	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+│  │  │  ├─ TC-REN-01 renew on 2027-11-23 -> fee 6720.00 TL, new period starts 2027-12-01 ✘ Multiple Failures (1 failure)
+│  │  │  │        	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+│  │  │  ├─ TC-REN-01 renew on 2027-11-24 -> fee 7200.00 TL, new period starts 2027-12-01 ✘ Multiple Failures (1 failure)
+│  │  │  │        	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+│  │  │  ├─ TC-REN-01 renew on 2027-11-30 -> fee 7200.00 TL, new period starts 2027-12-01 ✘ Multiple Failures (1 failure)
+│  │  │  │        	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+│  │  │  └─ TC-REN-01 renew on 2027-12-05 -> fee 7680.00 TL, new period starts 2027-12-05 ✔
+│  │  ├─ TC-REN-04 Negative: frozen membership cannot be renewed ✔
+│  │  ├─ TC-REN-03 Renewal can change the plan type ✔
+│  │  ├─ TC-REN-07 Smoke: console demo runs without errors ✔
+│  │  ├─ TC-REN-02 Senior early renewal is capped at 35% total discount ✘ expected: <650.00> but was: <600.00>
+│  │  └─ TC-REN-06 Negative: unknown membership id and missing arguments are rejected ✔
+│  ├─ FR-5 Membership freeze ✔
+│  │  ├─ TC-FRZ-09 Negative: membership that has not started cannot be frozen ✔
+│  │  ├─ TC-FRZ-03 DT R3: membership that is already frozen cannot be frozen again ✔
+│  │  ├─ TC-FRZ-01 DT R1: monthly membership cannot be frozen ✔
+│  │  ├─ freezeDayBoundaries(MembershipType, int, boolean) ✔
+│  │  │  ├─ TC-FRZ-04 BVA QUARTERLY freeze of 6 days -> accepted=false ✔
+│  │  │  ├─ TC-FRZ-04 BVA QUARTERLY freeze of 7 days -> accepted=true ✔
+│  │  │  ├─ TC-FRZ-04 BVA QUARTERLY freeze of 15 days -> accepted=true ✔
+│  │  │  ├─ TC-FRZ-04 BVA QUARTERLY freeze of 16 days -> accepted=false ✔
+│  │  │  ├─ TC-FRZ-04 BVA ANNUAL freeze of 60 days -> accepted=true ✔
+│  │  │  └─ TC-FRZ-04 BVA ANNUAL freeze of 61 days -> accepted=false ✔
+│  │  ├─ TC-FRZ-08 DT R6: accepted freeze extends end date and changes status ✔
+│  │  ├─ TC-FRZ-02 DT R2: expired membership cannot be frozen ✔
+│  │  ├─ TC-FRZ-05 DT R4: freeze shorter than 7 days is invalid input ✔
+│  │  ├─ TC-FRZ-10 Negative: unknown membership id and null date are rejected ✔
+│  │  ├─ TC-FRZ-07 Two freezes that exactly use the allowance are accepted ✔
+│  │  └─ TC-FRZ-06 DT R5: second freeze exceeding the remaining allowance is rejected ✘ Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+│  └─ FR-4 Membership creation ✔
+│     ├─ endDateIsLastDayOfPeriod(MembershipType, LocalDate) ✔
+│     │  ├─ TC-MEM-01 MONTHLY starting 2026-12-01 ends on 2026-12-31 ✘ expected: <2026-12-31> but was: <2027-01-01>
+│     │  ├─ TC-MEM-01 QUARTERLY starting 2026-12-01 ends on 2027-02-28 ✘ expected: <2027-02-28> but was: <2027-03-01>
+│     │  └─ TC-MEM-01 ANNUAL starting 2026-12-01 ends on 2027-11-30 ✘ expected: <2027-11-30> but was: <2027-12-01>
+│     ├─ TC-MEM-08 Negative: unknown member and missing arguments are rejected ✔
+│     ├─ TC-MEM-04 Negative: ineligible category (STUDENT at age 26) is rejected ✔
+│     ├─ startDateBoundaries(int, boolean) ✔
+│     │  ├─ TC-MEM-03 BVA start date offset -1 days -> valid=false ✔
+│     │  ├─ TC-MEM-03 BVA start date offset 0 days -> valid=true ✔
+│     │  └─ TC-MEM-03 BVA start date offset 1 days -> valid=true ✔
+│     ├─ TC-MEM-07 New membership allowed the day after the previous one expired ✔
+│     ├─ TC-MEM-06 Negative: second membership while one is active is rejected ✔
+│     ├─ TC-MEM-02 New membership stores fee, plan and ACTIVE status ✔
+│     └─ TC-MEM-05 SENIOR category is accepted at age 65 ✔
+└─ JUnit Vintage ✔
+
+Failures (17):
+  JUnit Jupiter:FR-2/FR-3 Fees, discounts and category eligibility:feeDecisionTable(MembershipType, MemberCategory, int, String):TC-FEE-01 DT ANNUAL + SENIOR + renewal 10% -> 6240.00 TL
+    MethodSource [className = 'edu.istinye.gym.FeeCalculatorTest', methodName = 'feeDecisionTable', methodParameterTypes = 'edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String']
+    => org.opentest4j.AssertionFailedError: expected: <6240.00> but was: <5760.00>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       edu.istinye.gym.FeeCalculatorTest.feeDecisionTable(FeeCalculatorTest.java:46)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-2/FR-3 Fees, discounts and category eligibility:feeDecisionTable(MembershipType, MemberCategory, int, String):TC-FEE-01 DT MONTHLY + SENIOR + renewal 10% -> 650.00 TL
+    MethodSource [className = 'edu.istinye.gym.FeeCalculatorTest', methodName = 'feeDecisionTable', methodParameterTypes = 'edu.istinye.gym.MembershipType, edu.istinye.gym.MemberCategory, int, java.lang.String']
+    => org.opentest4j.AssertionFailedError: expected: <650.00> but was: <600.00>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       edu.istinye.gym.FeeCalculatorTest.feeDecisionTable(FeeCalculatorTest.java:46)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-2/FR-3 Fees, discounts and category eligibility:renewalDiscountBoundaries(LocalDate, int):TC-FEE-04 BVA renew 2027-11-23 -> renewal discount 10%
+    MethodSource [className = 'edu.istinye.gym.FeeCalculatorTest', methodName = 'renewalDiscountBoundaries', methodParameterTypes = 'java.time.LocalDate, int']
+    => org.opentest4j.AssertionFailedError: expected: <10> but was: <5>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+       edu.istinye.gym.FeeCalculatorTest.renewalDiscountBoundaries(FeeCalculatorTest.java:78)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-1 Member registration:E-mail validation:TC-REG-10 Negative: duplicate e-mail with different letter case is rejected
+    MethodSource [className = 'edu.istinye.gym.RegistrationTest$EmailTests', methodName = 'duplicateEmailDifferentCaseRejected', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+       edu.istinye.gym.RegistrationTest$EmailTests.duplicateEmailDifferentCaseRejected(RegistrationTest.java:139)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+  JUnit Jupiter:FR-1 Member registration:Age validation:validAgesAccepted(int):TC-REG-04 BVA age 16 (with consent) is accepted
+    MethodSource [className = 'edu.istinye.gym.RegistrationTest$AgeTests', methodName = 'validAgesAccepted', methodParameterTypes = 'int']
+    => java.lang.IllegalArgumentException: Member must be at least 16 years old
+       edu.istinye.gym.MembershipService.registerMember(MembershipService.java:53)
+       edu.istinye.gym.RegistrationTest$AgeTests.validAgesAccepted(RegistrationTest.java:69)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       [...]
+  JUnit Jupiter:FR-1 Member registration:Age validation:guardianConsentDecisionTable(int, boolean, boolean):TC-REG-06 DT age 16, consent true -> accepted=true
+    MethodSource [className = 'edu.istinye.gym.RegistrationTest$AgeTests', methodName = 'guardianConsentDecisionTable', methodParameterTypes = 'int, boolean, boolean']
+    => java.lang.IllegalArgumentException: Member must be at least 16 years old
+       edu.istinye.gym.MembershipService.registerMember(MembershipService.java:53)
+       edu.istinye.gym.RegistrationTest$AgeTests.guardianConsentDecisionTable(RegistrationTest.java:99)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       [...]
+  JUnit Jupiter:FR-1 Member registration:Age validation:guardianConsentDecisionTable(int, boolean, boolean):TC-REG-06 DT age 16, consent false -> accepted=false
+    MethodSource [className = 'edu.istinye.gym.RegistrationTest$AgeTests', methodName = 'guardianConsentDecisionTable', methodParameterTypes = 'int, boolean, boolean']
+    => org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+       org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+       org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+       org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+       edu.istinye.gym.RegistrationTest$AgeTests.guardianConsentDecisionTable(RegistrationTest.java:103)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-1 Member registration:Age validation:guardianConsentDecisionTable(int, boolean, boolean):TC-REG-06 DT age 17, consent false -> accepted=false
+    MethodSource [className = 'edu.istinye.gym.RegistrationTest$AgeTests', methodName = 'guardianConsentDecisionTable', methodParameterTypes = 'int, boolean, boolean']
+    => org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+       edu.istinye.gym.RegistrationTest$AgeTests.guardianConsentDecisionTable(RegistrationTest.java:101)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-6 Membership renewal:renewalFeeAndStartDate(LocalDate, String, LocalDate):TC-REN-01 renew on 2027-11-20 -> fee 6720.00 TL, new period starts 2027-12-01
+    MethodSource [className = 'edu.istinye.gym.RenewalTest', methodName = 'renewalFeeAndStartDate', methodParameterTypes = 'java.time.LocalDate, java.lang.String, java.time.LocalDate']
+    => org.opentest4j.MultipleFailuresError: Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+       org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+       edu.istinye.gym.RenewalTest.renewalFeeAndStartDate(RenewalTest.java:43)
+       [...]
+       Suppressed: org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+         org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+         org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+         org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+         [...]
+  JUnit Jupiter:FR-6 Membership renewal:renewalFeeAndStartDate(LocalDate, String, LocalDate):TC-REN-01 renew on 2027-11-23 -> fee 6720.00 TL, new period starts 2027-12-01
+    MethodSource [className = 'edu.istinye.gym.RenewalTest', methodName = 'renewalFeeAndStartDate', methodParameterTypes = 'java.time.LocalDate, java.lang.String, java.time.LocalDate']
+    => org.opentest4j.MultipleFailuresError: Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+       org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+       edu.istinye.gym.RenewalTest.renewalFeeAndStartDate(RenewalTest.java:43)
+       [...]
+       Suppressed: org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+         org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+         org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+         org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+         [...]
+  JUnit Jupiter:FR-6 Membership renewal:renewalFeeAndStartDate(LocalDate, String, LocalDate):TC-REN-01 renew on 2027-11-24 -> fee 7200.00 TL, new period starts 2027-12-01
+    MethodSource [className = 'edu.istinye.gym.RenewalTest', methodName = 'renewalFeeAndStartDate', methodParameterTypes = 'java.time.LocalDate, java.lang.String, java.time.LocalDate']
+    => org.opentest4j.MultipleFailuresError: Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+       org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+       edu.istinye.gym.RenewalTest.renewalFeeAndStartDate(RenewalTest.java:43)
+       [...]
+       Suppressed: org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+         org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+         org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+         org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+         [...]
+  JUnit Jupiter:FR-6 Membership renewal:renewalFeeAndStartDate(LocalDate, String, LocalDate):TC-REN-01 renew on 2027-11-30 -> fee 7200.00 TL, new period starts 2027-12-01
+    MethodSource [className = 'edu.istinye.gym.RenewalTest', methodName = 'renewalFeeAndStartDate', methodParameterTypes = 'java.time.LocalDate, java.lang.String, java.time.LocalDate']
+    => org.opentest4j.MultipleFailuresError: Multiple Failures (1 failure)
+	org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+       org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+       org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)
+       edu.istinye.gym.RenewalTest.renewalFeeAndStartDate(RenewalTest.java:43)
+       [...]
+       Suppressed: org.opentest4j.AssertionFailedError: expected: <2027-12-01> but was: <2027-12-02>
+         org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+         org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+         org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+         org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+         [...]
+  JUnit Jupiter:FR-6 Membership renewal:TC-REN-02 Senior early renewal is capped at 35% total discount
+    MethodSource [className = 'edu.istinye.gym.RenewalTest', methodName = 'seniorEarlyRenewalCapped', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: expected: <650.00> but was: <600.00>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       edu.istinye.gym.RenewalTest.seniorEarlyRenewalCapped(RenewalTest.java:58)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+  JUnit Jupiter:FR-5 Membership freeze:TC-FRZ-06 DT R5: second freeze exceeding the remaining allowance is rejected
+    MethodSource [className = 'edu.istinye.gym.FreezeTest', methodName = 'cumulativeLimitEnforced', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+       edu.istinye.gym.FreezeTest.cumulativeLimitEnforced(FreezeTest.java:100)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+  JUnit Jupiter:FR-4 Membership creation:endDateIsLastDayOfPeriod(MembershipType, LocalDate):TC-MEM-01 MONTHLY starting 2026-12-01 ends on 2026-12-31
+    MethodSource [className = 'edu.istinye.gym.MembershipCreationTest', methodName = 'endDateIsLastDayOfPeriod', methodParameterTypes = 'edu.istinye.gym.MembershipType, java.time.LocalDate']
+    => org.opentest4j.AssertionFailedError: expected: <2026-12-31> but was: <2027-01-01>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       edu.istinye.gym.MembershipCreationTest.endDateIsLastDayOfPeriod(MembershipCreationTest.java:37)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-4 Membership creation:endDateIsLastDayOfPeriod(MembershipType, LocalDate):TC-MEM-01 QUARTERLY starting 2026-12-01 ends on 2027-02-28
+    MethodSource [className = 'edu.istinye.gym.MembershipCreationTest', methodName = 'endDateIsLastDayOfPeriod', methodParameterTypes = 'edu.istinye.gym.MembershipType, java.time.LocalDate']
+    => org.opentest4j.AssertionFailedError: expected: <2027-02-28> but was: <2027-03-01>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       edu.istinye.gym.MembershipCreationTest.endDateIsLastDayOfPeriod(MembershipCreationTest.java:37)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:FR-4 Membership creation:endDateIsLastDayOfPeriod(MembershipType, LocalDate):TC-MEM-01 ANNUAL starting 2026-12-01 ends on 2027-11-30
+    MethodSource [className = 'edu.istinye.gym.MembershipCreationTest', methodName = 'endDateIsLastDayOfPeriod', methodParameterTypes = 'edu.istinye.gym.MembershipType, java.time.LocalDate']
+    => org.opentest4j.AssertionFailedError: expected: <2027-11-30> but was: <2027-12-01>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       edu.istinye.gym.MembershipCreationTest.endDateIsLastDayOfPeriod(MembershipCreationTest.java:37)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+
+Test run finished after 873 ms
+[        27 containers found      ]
+[         0 containers skipped    ]
+[        27 containers started    ]
+[         0 containers aborted    ]
+[        27 containers successful ]
+[         0 containers failed     ]
+[       112 tests found           ]
+[         0 tests skipped         ]
+[       112 tests started         ]
+[         0 tests aborted         ]
+[        95 tests successful      ]
+[        17 tests failed          ]
+

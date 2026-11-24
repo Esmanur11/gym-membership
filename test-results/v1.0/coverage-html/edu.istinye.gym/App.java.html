@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">edu.istinye.gym</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package edu.istinye.gym;
+
+import java.time.LocalDate;
+
+/**
+ * Small console demo of the main scenarios. Run with:
+ * mvn -q compile exec:java  (or)  java -cp target/classes edu.istinye.gym.App
+ */
+<span class="nc" id="L9">public class App {</span>
+
+    public static void main(String[] args) {
+<span class="fc" id="L12">        MembershipService service = new MembershipService();</span>
+<span class="fc" id="L13">        LocalDate today = LocalDate.of(2026, 12, 1);</span>
+
+<span class="fc" id="L15">        Member ayse = service.registerMember(&quot;Ayşe Yılmaz&quot;, 21, &quot;ayse@example.com&quot;, false);</span>
+<span class="fc" id="L16">        Membership annual = service.createMembership(ayse.getId(), MembershipType.ANNUAL,</span>
+                MemberCategory.STUDENT, today, today);
+<span class="fc" id="L18">        print(&quot;Created&quot;, annual, today);</span>
+
+<span class="fc" id="L20">        LocalDate freezeDay = today.plusMonths(2);</span>
+<span class="fc" id="L21">        service.freezeMembership(annual.getId(), 30, freezeDay);</span>
+<span class="fc" id="L22">        print(&quot;Frozen for 30 days&quot;, annual, freezeDay);</span>
+
+<span class="fc" id="L24">        LocalDate renewalDay = annual.getEndDate().minusDays(10);</span>
+<span class="fc" id="L25">        Membership renewed = service.renewMembership(annual.getId(), MembershipType.QUARTERLY, renewalDay);</span>
+<span class="fc" id="L26">        print(&quot;Renewed early&quot;, renewed, renewalDay);</span>
+
+        try {
+<span class="nc" id="L29">            service.registerMember(&quot;Can&quot;, 15, &quot;can@example.com&quot;, true);</span>
+<span class="fc" id="L30">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L31">            System.out.println(&quot;Rejected registration: &quot; + e.getMessage());</span>
+<span class="nc" id="L32">        }</span>
+<span class="fc" id="L33">    }</span>
+
+    private static void print(String action, Membership m, LocalDate date) {
+<span class="fc" id="L36">        System.out.printf(&quot;%-20s %s %s/%s %s -&gt; %s, fee %s TL, status %s%n&quot;, action, m.getId(),</span>
+<span class="fc" id="L37">                m.getType(), m.getCategory(), m.getStartDate(), m.getEndDate(), m.getFee(), m.getStatus(date));</span>
+<span class="fc" id="L38">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
